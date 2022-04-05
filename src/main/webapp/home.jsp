@@ -9,5 +9,6 @@
         <h3><%= "Your role is " + request.getAttribute("role") %></h3>
         <br/>
         <a href="./index.html">Logout</a>
+        <a href="artista.html">Pasar a la pagina artista</a>
     </body>
 </html>

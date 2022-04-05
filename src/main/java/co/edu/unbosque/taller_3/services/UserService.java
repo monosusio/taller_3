@@ -1,30 +1,20 @@
 package co.edu.unbosque.taller_3.services;
 
 import co.edu.unbosque.taller_3.DTO.User;
-import com.opencsv.bean.CsvToBean;
-import com.opencsv.bean.CsvToBeanBuilder;
-import com.opencsv.bean.HeaderColumnNameMappingStrategy;
+import com.opencsv.bean.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Optional;
 
 public class UserService {
 
-    public static Optional<List<User>> getUsers() throws IOException {
+    public List<User> getUsers() throws IOException {
 
         List<User> users;
 
         try (InputStream is = UserService.class.getClassLoader()
                 .getResourceAsStream("users.csv")) {
-
-            if (is == null) {
-                return Optional.empty();
-            }
 
             HeaderColumnNameMappingStrategy<User> strategy = new HeaderColumnNameMappingStrategy<>();
             strategy.setType(User.class);
@@ -41,21 +31,13 @@ public class UserService {
             }
         }
 
-        return Optional.of(users);
+        return users;
     }
 
-    public static void main(String args[]) {
-        try {
-            Optional<List<User>> users = new UserService().getUsers();
-
-            for (User user: users.get()) {
-                System.out.println(user.toString());
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    public void createUser(String username, String password, String path) throws IOException {
+        String newLine = "\n" + username + "," + password + ",customer";
+        FileOutputStream os = new FileOutputStream(path + "WEB-INF/classes/" + "users.csv", true);
+        os.write(newLine.getBytes());
+        os.close();
     }
-
 }
