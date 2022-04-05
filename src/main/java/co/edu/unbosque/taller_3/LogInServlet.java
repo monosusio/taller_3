@@ -44,7 +44,12 @@ public class LogInServlet extends HttpServlet {
             response.addCookie(cookie);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("./home.jsp");
-            dispatcher.forward(request, response);
+
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e){
+                e.printStackTrace();
+            }
 
         } else {
             response.sendRedirect("./401.html");
