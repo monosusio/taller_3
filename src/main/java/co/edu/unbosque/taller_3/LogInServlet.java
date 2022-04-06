@@ -21,6 +21,7 @@ public class LogInServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
 
         List<User> users = new UserService().getUsers();
 
@@ -36,8 +37,18 @@ public class LogInServlet extends HttpServlet {
             cookie.setMaxAge(20);
             response.addCookie(cookie);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("./home.jsp");
-            dispatcher.forward(request, response);
+
+
+            if(userFounded.getRole().equals("Artist")) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("./artista.html");
+                dispatcher.forward(request, response);
+
+            } else if (userFounded.getRole().equals("Customer")) {
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("./usuario.html");
+                dispatcher.forward(request, response);
+            }
+
 
         } else {
             response.sendRedirect("./401.html");

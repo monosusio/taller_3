@@ -18,9 +18,11 @@ public class SignUpServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
+
 
         try {
-            new UserService().createUser(username, password, getServletContext().getRealPath("") + File.separator);
+            new UserService().createUser(username, password, role, getServletContext().getRealPath("") + File.separator);
         } catch (Exception e) {
             e.printStackTrace();
         }
