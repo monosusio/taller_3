@@ -13,13 +13,17 @@ public class User {
     @CsvBindByName
     private String role;
 
+    @CsvBindByName
+    private String fcoins;
+
     public User() {
     }
 
-    public User(String username, String password, String role) {
+    public User(String username, String password, String role, String fcoins) {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.fcoins = fcoins;
     }
 
     public String getUsername() {
@@ -44,6 +48,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getFcoins() {
+        return fcoins;
+    }
+
+    public void setFcoins(String fcoins) {
+        this.fcoins = fcoins;
     }
 
     @Override

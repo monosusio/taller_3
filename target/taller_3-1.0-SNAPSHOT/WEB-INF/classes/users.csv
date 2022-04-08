@@ -1,4 +1,5 @@
-username,password,role
-fabian,123456,artist   
-prueba3,123,Customer
-prueba4,123,Artist
+username,password,role,fcoins
+prueba20,123,Customer,0
+prueba21,123,Customer,0
+prueba111,123,Customer,0
+prueba33,123,Artist,0
